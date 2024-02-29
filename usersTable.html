@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Tailwind</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+<body class="bg-blue-100 dark:bg-gray-700">
+
+            <!-- header -->
+
+    <div id="content" class="max-w-[100vw] w-full relative">
+        <div class="bg-blue-500 dark:bg-gray-500 text-white p-1 flex justify-between">
+            <button id="menuToggle" class="block sm:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 448 512">
+                    <path fill="#ffffff"
+                        d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
+                </svg>
+                <svg class="hidden" xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512">
+                    <path fill="#ffffff"
+                        d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                </svg>
+            </button>
+            <div class="absolute top-[56px] left-0 p-3 hidden w-full" id="ddMenu">
+                <img class="w-[20%] h-7" src="haya.png" alt="logo">
+                <button id="Home" class="Home font-bold">Home</button>
+                <button class="font-bold"><a href="usersTable.html">employees</a></button>
+                <button class="font-bold"><a href="missionstable.html">missions</a></button>
+                <button class="VirtualGames block py-1 px-2">Virtual Games</button>
+                <button class="cooperativeChallenge block py-1 px-2">Cooperative Challenges</button>
+                <button class="SocialInteraction block py-1 px-2">Social Interaction</button>
+            </div>
+            <div class="justify-start items-center gap-4 hidden sm:flex">
+                <img id="logo" class="w-[14%] h-full p-2 cursor-pointer" src="haya.png" alt="logo">
+                <button id="Home" class="Home font-bold">Home</button>
+                <button class="font-bold"><a href="usersTable.html">employees</a></button>
+                <button class="font-bold"><a href="missionstable.html">missions</a></button>
+                <button id="virtual" class="VirtualGames font-bold hidden">Virtual Games</button>
+                <button class="cooperativeChallenge font-bold hidden">Cooperative Challenges</button>
+                <button id="social" class="SocialInteraction font-bold hidden">Social Interaction</button>
+            </div>
+            <div id="navEnd" class="flex items-center gap-4">
+                <button id="exitRoomBut" class="bg-red-700 rounded px-2 py-2 w-[100%] font-bold border"><a href="login.html">Logout</a></button>
+                <button class="mr-3 font-bold" id="bgButton">dark</button>
+            </div>
+        </div>
+        <!-- <div class="bg-slate-500"><img class="w-[100%] h-[80vh]" src="background.jpg" alt="team image">
+            <h1 class="text-3xl text-center">Remote Team Building Platform</h1>
+        </div> -->
+    </div>
+
+            <!-- content of main page  -->
+
+    <div>
+        <h1 class="font-bold text-3xl text-center py-3 ">Employees</h1>
+        <div class="flex flex-col m-4 gap-4">
+            <button id="showModalBtn" class="m-auto border p-2 rounded-md bg-gray-400"><span class="font-bold">+Add New Employee</span></button>
+            <div class="flex m-auto gap-14">
+                <label for="">searchBy</label>
+                <select class="p-1 m-auto border rounded-xl w-1/2 border-black" id="searchBy" name="searchBy">
+                    <option>id</option>
+                    <option>name</option>
+                    <option>phone</option>
+                    <option>email</option>
+                </select>
+                <input class="p-1 m-auto border rounded-xl w-4/5 border-black" placeholder="search" type="text">
+            </div>
+        </div>
+        <table id="employeeTable" class="m-auto border-collapse border border-slate-400 bg-white bg-opacity-50">
+        </table>
+        <div class="modal hidden w-[400px] border bg-gray-400 m-auto" id="modalContent">
+            <label for="">employeeName: <input id="TXTemplyeeName" class="border" type="text"></label> <br>
+            <label for="">phone: <input id="TXTemplyeePhone" class="border" type="text"></label><br>
+            <label for="">email: <input id="TXTemplyeeEmail" class="border" type="text"></label><br>
+            <select name="" id="genderSelect">
+                <option value="male">male</option>
+                <option value="female">female</option>
+            </select>
+            <button id="closeModalBtn" class="border bg-red-700">Close</button>
+            <button id="addModalBtn" class="border bg-green-700">Add New Employee</button>
+        </div>
+    </div>
+    <a onclick="" href=""></a>
+    <script>
+
+
+        let users;
+        const showModalBtn = document.getElementById('showModalBtn');
+        const modalContent = document.getElementById('modalContent');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const addModalBtn = document.getElementById('addModalBtn');
+        const employeeTable = document.getElementById('employeeTable');
+
+        document.addEventListener('DOMContentLoaded',function(){
+            users = JSON.parse(localStorage.getItem('users'));
+            if(!users)
+            {
+                users={'users':[]};
+                localStorage.setItem('users', JSON.stringify(users));
+            }
+            else
+            addRowTotable()
+        })
+
+        let addRowTotable = function(){
+            const storedUsers = JSON.parse(localStorage.getItem('users'));
+            employeeTable.innerHTML = `<tr>
+                <th class="border border-slate-300 px-5">Gender</th>
+                <th class="border border-slate-300 px-5">ID</th>
+                <th class="border border-slate-300 px-5">Employee Name</th>
+                <th class="border border-slate-300 px-8">Phone</th>
+                <th class="border border-slate-300 px-5">Email</th>
+                <th class="border border-slate-300 px-5">missions</th>
+            </tr>`;
+            storedUsers.users.forEach((element,idx) => {
+                let imageToAttach;
+                if(element.gender =='male')
+                {
+                    imageToAttach = `<td class="border border-slate-300"><img class="m-auto w-[50px]" src="iconMan.png" alt="maleIMG"></td>`
+                }
+                else
+                {
+                    imageToAttach = `<td class="border border-slate-300"><img class="m-auto w-[50px]" src="female-icon-7896.png" alt="femaleIMG"></td>`
+                }
+                let row = `<tr class="text-center">
+                    ${imageToAttach}<td class="mx-3 p-3 border border-slate-300">${idx}</td><td class="border border-slate-300">${element.employeeName}</td><td class="border border-slate-300">${element.Phone}</td><td class="border border-slate-300 px-8">${element.Email}</td><td class="border rounded border-slate-300"><a class="p-1 mx-3 rounded bg-gray-300 hover:bg-gray-400" onclick="selectedItemInTable(${idx})" href="userMissons.html">show missions</a></td>
+                            </tr>`
+                employeeTable.innerHTML+=row
+            });
+        }
+
+        function selectedItemInTable(element){
+            
+            localStorage.setItem('selectedEmployee', JSON.stringify(element));
+        }
+
+        showModalBtn.addEventListener('click',()=>{
+            clearModal()
+            modalContent.classList.toggle('hidden')
+        });
+        closeModalBtn.addEventListener('click',()=>{
+            modalContent.classList.add('hidden')
+        });
+        addModalBtn.addEventListener('click',()=>{
+            let userNum
+            const storedUsers = JSON.parse(localStorage.getItem('users'));
+            if(!storedUsers)
+            {
+             userNum = 0
+            }
+            else
+            {
+             userNum = storedUsers.users.length
+            }
+            modalContent.classList.add('hidden')
+            const NewUser = {"id":userNum++,"employeeName":document.getElementById('TXTemplyeeName').value,"gender":document.getElementById("genderSelect").value,"Phone":document.getElementById('TXTemplyeePhone').value,"Email":document.getElementById('TXTemplyeeEmail').value}
+            users.users.push(NewUser)
+            localStorage.setItem('users',JSON.stringify(users)) 
+            addRowTotable()
+        });
+
+        const clearModal = function(){
+            document.getElementById('TXTemplyeeName').value = "";
+            document.getElementById('TXTemplyeePhone').value = "";
+            document.getElementById('TXTemplyeeEmail').value = "";
+
+        }
+
+    </script>
+</body>
+
+</html>

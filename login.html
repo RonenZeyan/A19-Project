@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Tailwind</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body style="background-image: url(loginBG.jpeg);" class="bg-gray-100">
+
+           <!-- header -->
+
+           <div id="content" class="max-w-[100vw] w-full relative">
+            <div class="bg-blue-500 dark:bg-gray-500 text-white p-1 flex justify-between">
+                <button id="menuToggle" class="block sm:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 448 512">
+                        <path fill="#ffffff"
+                            d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z" />
+                    </svg>
+                    <svg class="hidden" xmlns="http://www.w3.org/2000/svg" height="1.5em" viewBox="0 0 384 512">
+                        <path fill="#ffffff"
+                            d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+                    </svg>
+                </button>
+                <div class="absolute top-[56px] left-0 p-3 hidden w-full" id="ddMenu">
+                    <img class="w-[20%] h-7" src="haya.png" alt="logo">
+                    <button id="Home" class="Home font-bold">Home</button>
+                    <button class="VirtualGames block py-1 px-2">Virtual Games</button>
+                    <button class="cooperativeChallenge block py-1 px-2">Cooperative Challenges</button>
+                    <button class="SocialInteraction block py-1 px-2">Social Interaction</button>
+                </div>
+                <div class="justify-start items-center gap-4 hidden sm:flex">
+                    <img id="logo" class="w-[14%] h-full p-2 cursor-pointer" src="haya.png" alt="logo">
+                    <button id="Home" class="Home font-bold">Home</button>
+                    <button id="virtual" class="VirtualGames font-bold hidden">Virtual Games</button>
+                    <button class="cooperativeChallenge font-bold hidden">Cooperative Challenges</button>
+                    <button id="social" class="SocialInteraction font-bold hidden">Social Interaction</button>
+                </div>
+                <div id="navEnd" class="flex items-center gap-4">
+                    <button id="exitRoomBut" class="bg-red-700 rounded px-2 py-0 w-[100%] hidden font-bold border">Exit Room</button>
+                    <button class="mr-3 font-bold" id="bgButton">dark</button>
+                </div>
+            </div>
+            <!-- <div class="bg-slate-500"><img class="w-[100%] h-[80vh]" src="background.jpg" alt="team image">
+                <h1 class="text-3xl text-center">Remote Team Building Platform</h1>
+            </div> -->
+        </div>
+
+    <!-- login content -->
+    <div class="max-w-md mx-auto my-20 py-16 px-14 bg-white bg-opacity-60 rounded-lg shadow-md">
+      <h1 class="text-3xl font-medium mb-6 text-blue-800 text-center">Login</h1>
+
+      <form id="loginForm">
+        <div class="mb-12">
+          <label class="block text-gray-800 font-medium">Username:</label>
+          <input id="loginInput" class="rounded-full border border-black p-2 w-full rounded" type="text">
+        </div>
+
+        <div class="mb-12">
+          <label class="block text-gray-800 font-medium">Password:</label>  
+          <input id="passwordInput" class="rounded-full border border-black p-2 w-full rounded" type="password">
+        </div>
+
+        <button id="submitButton" type="submit" class="w-full bg-blue-800 text-white py-2 px-4 rounded-full hover:bg-purple-700">Login</button>
+        <div class="flex justify-between mt-8">
+            <div class="font-bold"><input type="checkbox" id=""> Remember me!</div>
+            <a href="#"><p class="font-bold">forgot password</p></a>
+        </div>
+        <div id="invalidTxt" class="hidden">
+          <p class="font-extrabold text-red-900 text-center pt-3">some of details wrong</p>
+        </div>
+    </form>
+    </div>
+
+    <script>
+        let invalidTxt = document.getElementById('invalidTxt')
+        let loginInput = document.getElementById('loginInput');
+        let passwordInput = document.getElementById('passwordInput');
+        let submitButton = document.getElementById('submitButton');
+
+        const checkLoginDetails = function()
+        {
+          let username = loginInput.value;
+          let password = passwordInput.value;
+          console.log(username)
+          const storedUsers = JSON.parse(localStorage.getItem('LoginPassword'));
+          let isUserFound = false;
+          storedUsers.users.forEach(element => {
+                if((element.username==username && element.password==password)||(username=="admin" &&password=="admin"))
+                {
+                  isUserFound = true;
+                }});
+          return isUserFound
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+              event.preventDefault();
+                if(checkLoginDetails())
+                {
+                  console.log("success")
+                  window.location.href = "usersTable.html";
+                }
+                else
+                {
+                  console.log("failed")
+                  invalidTxt.classList.remove('hidden')  
+                }
+        });
+
+        const pressLogin = function(){
+            let username = loginInput.value;
+            let password = passwordInput.value;
+            const storedUsers = JSON.parse(localStorage.getItem('LoginPassword'));
+
+            storedUsers.users.forEach(element => {
+                if(element.username ==username && element.password ==password)
+                {
+                  return;
+                }
+                else
+                {
+                  invalidTxt.classList.toggle('hidden')  
+                }
+            });
+        }
+
+        // submitButton.addEventListener('click',pressLogin);
+
+
+
+    </script>
+  </body>
+</html>
